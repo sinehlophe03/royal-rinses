@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Royal Rinse Car Wash</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <script src="{{ url_for('static', filename='app.js') }}" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand"><img src="{{ url_for('static', filename='images/logo.png') }}" alt="logo" style="height:36px;margin-right:8px;vertical-align:middle;"> <span class="crown">Royal Rinse</span></div>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/book">Book</a>
+        <a href="/schedule">Schedule</a>
+        {% if session.get('user_id') %}
+          <a href="/my_bookings">My Bookings</a>
+          <a href="/logout">Logout</a>
+        {% else %}
+          <a href="/login">Login</a>
+          <a href="/register">Register</a>
+        {% endif %}
+        <a href="/admin">Admin</a>
+      </nav>
+    </div>
+  </header>
+  <main class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="flashes">
+          {% for cat, msg in messages %}
+            <div class="flash {{cat}}">{{msg}}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </main>
+  <footer class="site-footer">
+    <div class="container">© {{ current_year }} Royal Rinse · Mbabane (Sdwashini) · 76716978</div>
+  </footer>
+</body>
+</html>

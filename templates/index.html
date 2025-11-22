@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+  <section class="hero royal-hero">
+    <h1>Royal Rinse — We bring the royal treatment to your car</h1>
+    <p class="lead">Mobile luxury car wash · Eco-friendly · Professional team</p>
+    <a class="btn" href="/book">Book Now</a>
+  </section>
+
+  <section class="services-preview">
+    <h2>Our Services</h2>
+    <div class="service-grid">
+      {% for s in services %}
+        <div class="service-card">
+          <h4>{{s.title}}</h4>
+          <p>{{s.desc}}</p>
+          <div class="price">E{{s.price}}</div>
+          <a class="btn small" href="/book?service={{s.id}}">Book Now</a>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+{% endblock %}

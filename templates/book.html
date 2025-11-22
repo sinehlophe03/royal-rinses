@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>Book a Service</h2>
+  <form id="booking-form" method="post" action="/book">
+    <label>Full name<input name="customer_name" value="{{ session.get('fullname','') }}" required></label>
+    <label>Phone<input name="phone" required></label>
+    <label>Email<input name="email" type="email"></label>
+    <label>Service
+      <select name="service" id="service-select">
+        <option value="basic">Basic Rinse</option>
+        <option value="deluxe">Deluxe Rinse</option>
+        <option value="royal">Royal Rinse</option>
+      </select>
+    </label>
+    <label>Date<input type="date" name="date" id="date-input" required></label>
+    <label>Time
+      <select name="time" id="time-select" required>
+        <option value="">Choose date first</option>
+      </select>
+    </label>
+    <label>Address<textarea name="address" required></textarea></label>
+    <label>Notes<textarea name="notes"></textarea></label>
+    <button class="btn" type="submit">Confirm Booking</button>
+  </form>
+{% endblock %}

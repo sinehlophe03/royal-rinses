@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>Payment (Demo)</h2>
+  <p>Booking: {{ booking.service }} — E{{ booking.amount }} — {{ booking.date }} at {{ booking.time }}</p>
+  <form method="post" action="/payment">
+    <label>Card number<input name="card_number" placeholder="4111 1111 1111 1111" required></label>
+    <label>Expiry<input name="exp" placeholder="MM/YY" required></label>
+    <label>CVV<input name="cvv" placeholder="123" required></label>
+    <button class="btn" type="submit">Pay E{{ booking.amount }}</button>
+  </form>
+{% endblock %}
